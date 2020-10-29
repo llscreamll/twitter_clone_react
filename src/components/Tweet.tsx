@@ -2,7 +2,6 @@ import React from 'react';
 import {createStyles} from "../pages/Home";
 import {Avatar, Paper, Typography} from "@material-ui/core";
 import classNames from "classnames";
-import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import ChatBubbleOutlineOutlinedIcon from "@material-ui/icons/ChatBubbleOutlineOutlined";
 import RepeatTwoToneIcon from "@material-ui/icons/RepeatTwoTone";
@@ -22,51 +21,46 @@ interface TweetProps {
 const Tweet: React.FC<TweetProps> = ({classes, user}: TweetProps): React.ReactElement => {
     return (
         <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant={"outlined"} elevation={3}>
-            <Grid container spacing={1}>
-                <Grid className={classes.tweetGridAvatar} item xs={1}>
 
-                    <Avatar
-                        className={classes.tweetAvatar}
-                        alt={`Аватарка пользователя ${user.fullname}`}
-                        src={user.avatarUrl}
-                    />
+            <Avatar
+                className={classes.tweetAvatar}
+                alt={`Аватарка пользователя ${user.fullname}`}
+                src={user.avatarUrl}
+            />
+            <div className={classes.tweetContent}>
+                <Typography> <b>{user.fullname}</b>&nbsp;
+                    <span className={classes.tweetUserName}> @{user.username}</span>&nbsp;
+                    <span className={classes.tweetUserName}>.</span>&nbsp;
+                    <span className={classes.tweetUserName}> 2 мин</span>&nbsp;
 
-                </Grid>
-                <Grid item xs={10}>
-                    <Typography> <b>{user.fullname}</b>&nbsp;
-                        <span className={classes.tweetUserName}> @{user.username}</span>&nbsp;
-                        <span className={classes.tweetUserName}>.</span>&nbsp;
-                        <span className={classes.tweetUserName}> 2 мин</span>&nbsp;
-
-                    </Typography>
-                    <Typography>
-                        {user.text}
-                    </Typography>
-                    <div className={classes.tweetFooter}>
-                        <div>
-                            <IconButton aria-label="delete">
-                                <ChatBubbleOutlineOutlinedIcon style={{fontSize: "20px"}}/>
-                            </IconButton>
-                            <span style={{fontSize: "14px"}}>1</span>
-                        </div>
-                        <div>
-                            <IconButton aria-label="delete">
-                                <RepeatTwoToneIcon style={{fontSize: "20px"}}/>
-                            </IconButton>
-                        </div>
-                        <div>
-                            <IconButton aria-label="delete">
-                                <FavoriteBorderIcon style={{fontSize: "20px"}}/>
-                            </IconButton>
-                        </div>
-                        <div>
-                            <IconButton aria-label="delete">
-                                <ReplySharpIcon style={{fontSize: "20px"}}/>
-                            </IconButton>
-                        </div>
+                </Typography>
+                <Typography>
+                    {user.text}
+                </Typography>
+                <div className={classes.tweetFooter}>
+                    <div>
+                        <IconButton aria-label="delete">
+                            <ChatBubbleOutlineOutlinedIcon style={{fontSize: "20px"}}/>
+                        </IconButton>
+                        <span style={{fontSize: "14px"}}>1</span>
                     </div>
-                </Grid>
-            </Grid>
+                    <div>
+                        <IconButton aria-label="delete">
+                            <RepeatTwoToneIcon style={{fontSize: "20px"}}/>
+                        </IconButton>
+                    </div>
+                    <div>
+                        <IconButton aria-label="delete">
+                            <FavoriteBorderIcon style={{fontSize: "20px"}}/>
+                        </IconButton>
+                    </div>
+                    <div>
+                        <IconButton aria-label="delete">
+                            <ReplySharpIcon style={{fontSize: "20px"}}/>
+                        </IconButton>
+                    </div>
+                </div>
+            </div>
         </Paper>
     )
 }
