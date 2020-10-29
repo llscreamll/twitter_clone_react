@@ -8,12 +8,16 @@ import {theme} from "./theme"
 import {BrowserRouter} from "react-router-dom"
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <App/>
+
+                    <App/>
+
+
             </ThemeProvider>
         </BrowserRouter>
     </React.StrictMode>,

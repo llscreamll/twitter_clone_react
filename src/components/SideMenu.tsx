@@ -1,6 +1,6 @@
 import React from 'react';
-import {createStyles} from "../pages/Home";
-import {Button, Typography} from "@material-ui/core";
+
+import {Button, Hidden, Typography} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import {Link, NavLink} from "react-router-dom";
 import TwitterIcon from "@material-ui/icons/Twitter";
@@ -10,15 +10,28 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-import { Hidden } from '@material-ui/core'
 import CreateIcon from '@material-ui/icons/Create';
+import {createStyles} from '../pages/Home/theme';
+import ModalWindow from "../pages/modal/ModalWindow";
+import AddTweetForm from './AddTweetFrom';
+
 
 interface SideMenuProps {
     classes: ReturnType<typeof createStyles>
-
 }
 
 const SideMenu: React.FC<SideMenuProps> = ({classes}: SideMenuProps): React.ReactElement => {
+
+    const [openVisibleAddTweetModal, setOpenVisibleAddTweetModal] = React.useState(false);
+
+    const openAddTweetModal = () => {
+        setOpenVisibleAddTweetModal(true);
+    };
+    const closeTweetModal = () => {
+        setOpenVisibleAddTweetModal(false);
+    };
+
+
     return (
 
         <ul className={classes.sideMenuList}>
@@ -29,8 +42,6 @@ const SideMenu: React.FC<SideMenuProps> = ({classes}: SideMenuProps): React.Reac
                     </IconButton>
                 </Link>
             </li>
-
-
             <li className={classes.sideMenuListItem}>
 
                 <NavLink to="/signin/search" activeClassName={classes.sideMenuListItemsButtonActive}>
@@ -38,7 +49,7 @@ const SideMenu: React.FC<SideMenuProps> = ({classes}: SideMenuProps): React.Reac
 
                         <SearchIcon className={classes.sideMenuListItemIcon}/>
                         <Hidden smDown>
-                        <Typography className={classes.sideMenuListItemsLabel} variant={"h6"}>Поиск</Typography>
+                            <Typography className={classes.sideMenuListItemsLabel} variant={"h6"}>Поиск</Typography>
                         </Hidden>
                     </Button>
                 </NavLink>
@@ -50,20 +61,19 @@ const SideMenu: React.FC<SideMenuProps> = ({classes}: SideMenuProps): React.Reac
 
                         <NotificationsNoneIcon className={classes.sideMenuListItemIcon}/>
                         <Hidden smDown>
-                        <Typography className={classes.sideMenuListItemsLabel}
-                                    variant={"h6"}>Уведомление</Typography>
+                            <Typography className={classes.sideMenuListItemsLabel}
+                                        variant={"h6"}>Уведомление</Typography>
                         </Hidden>
                     </Button>
                 </NavLink>
             </li>
-
             <li className={classes.sideMenuListItem}>
                 <NavLink to="/signin/message" activeClassName={classes.sideMenuListItemsButtonActive}>
                     <Button className={classes.sideMenuListItemsButton} aria-label="delete">
 
                         <MailOutlineIcon className={classes.sideMenuListItemIcon}/>
                         <Hidden smDown>
-                        <Typography className={classes.sideMenuListItemsLabel} variant={"h6"}>Сообщение</Typography>
+                            <Typography className={classes.sideMenuListItemsLabel} variant={"h6"}>Сообщение</Typography>
                         </Hidden>
                     </Button>
                 </NavLink>
@@ -74,7 +84,7 @@ const SideMenu: React.FC<SideMenuProps> = ({classes}: SideMenuProps): React.Reac
 
                         <BookmarkBorderIcon className={classes.sideMenuListItemIcon}/>
                         <Hidden smDown>
-                        <Typography className={classes.sideMenuListItemsLabel} variant={"h6"}>Закладки</Typography>
+                            <Typography className={classes.sideMenuListItemsLabel} variant={"h6"}>Закладки</Typography>
                         </Hidden>
                     </Button>
                 </NavLink>
@@ -85,7 +95,7 @@ const SideMenu: React.FC<SideMenuProps> = ({classes}: SideMenuProps): React.Reac
 
                         <ListAltIcon className={classes.sideMenuListItemIcon}/>
                         <Hidden smDown>
-                        <Typography className={classes.sideMenuListItemsLabel} variant={"h6"}>Список</Typography>
+                            <Typography className={classes.sideMenuListItemsLabel} variant={"h6"}>Список</Typography>
                         </Hidden>
                     </Button>
                 </NavLink>
@@ -96,23 +106,29 @@ const SideMenu: React.FC<SideMenuProps> = ({classes}: SideMenuProps): React.Reac
 
                         <PermIdentityIcon className={classes.sideMenuListItemIcon}/>
                         <Hidden smDown>
-                        <Typography className={classes.sideMenuListItemsLabel} variant={"h6"}>Профиль</Typography>
+                            <Typography className={classes.sideMenuListItemsLabel} variant={"h6"}>Профиль</Typography>
                         </Hidden>
                     </Button>
                 </NavLink>
             </li>
             <li>
                 <Button
+                    onClick={openAddTweetModal}
                     className={classes.sideMenuTweetButton}
                     variant="contained"
                     fullWidth
                     color={"primary"}>
-                    <Hidden smDown>  Твитнуть</Hidden>
+                    <Hidden smDown> Твитнуть</Hidden>
                     <Hidden mdUp>
-                        <CreateIcon />
+                        <CreateIcon/>
                     </Hidden>
                 </Button>
-
+                <ModalWindow classes={classes}
+                             handleClose={closeTweetModal}
+                             open={openVisibleAddTweetModal}
+                             openVisibleAddTweetModal={openVisibleAddTweetModal}>
+                    <AddTweetForm classes={classes}/>
+                </ModalWindow>
 
             </li>
         </ul>

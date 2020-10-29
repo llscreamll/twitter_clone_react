@@ -6,24 +6,27 @@ import CloseIcon from "@material-ui/icons/Close";
 import ModalCome from "./modalCome/ModalCome";
 import ModalRegister from "./modalRegister/ModalRegister";
 import Modal from "@material-ui/core/Modal";
+import AddTweetForm from "../../components/AddTweetFrom";
+import {createStyles} from "../Home/theme";
 
 
 type ModalWindowType = {
     open: boolean
     handleClose: () => void
-    openComeModal: boolean
-    classes: any
-    openRegisterModal: boolean
+    openComeModal?: boolean
+    classes: ReturnType<typeof createStyles>
+    openRegisterModal?: boolean
+    openVisibleAddTweetModal? : boolean
+
 }
 
-const ModalWindow: React.FC<ModalWindowType> = ({classes, open, handleClose, openComeModal, openRegisterModal}) => {
+const ModalWindow: React.FC<ModalWindowType> = ({classes, open, handleClose, openComeModal, openRegisterModal,openVisibleAddTweetModal}) => {
 
 
     return (
         <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
-            className={classes.modal}
             open={open}
             onClose={handleClose}
             closeAfterTransition
@@ -41,6 +44,7 @@ const ModalWindow: React.FC<ModalWindowType> = ({classes, open, handleClose, ope
 
                     {openComeModal && <ModalCome handleClose={handleClose}/>}
                     {openRegisterModal && <ModalRegister handleClose={handleClose}/>}
+                    {openVisibleAddTweetModal && <AddTweetForm  classes={classes}/>}
 
                 </div>
             </Fade>

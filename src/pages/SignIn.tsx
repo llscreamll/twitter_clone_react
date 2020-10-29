@@ -1,102 +1,15 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, Typography } from "@material-ui/core";
+import React, {useState} from "react";
+import {Button, Typography} from "@material-ui/core";
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import ChatBubbleOutlineOutlinedIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
 import ModalWindow from "./modal/ModalWindow";
-
-
-const useStyles = makeStyles((theme) => ({
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    paper: {
-        maxWidth: 600,
-        minHeight: 400,
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: theme.shadows[5],
-        padding: '16px 32px 24px',
-        borderRadius: 20,
-        outline: "none",
-    },
-    paperTwitter: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        marginBottom: "20px",
-        borderBottom: '2px solid rgb(199,199,199)',
-        paddingBottom: " 20px"
-    },
-    wrapper: {
-        display: 'flex',
-        height: '100vh',
-    },
-    blueSide: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#71C9F8',
-        flex: '0 0 50%',
-        overflow: 'hidden',
-        position: 'relative'
-    },
-    blueSideBigIcon: {
-        position: 'absolute',
-        left: '50%',
-        top: '45%',
-        transform: 'translate(-50%,-50%)',
-        width: '350%',
-        height: '350%'
-    },
-    blueSideListInfo: {
-        position: 'relative',
-        listStyle: 'none',
-        padding: 0,
-        margin: 0,
-        width: 380,
-        '& h6': {
-            display: 'flex',
-            alignItems: 'center',
-            color: '#fff',
-            fontWeight: 700,
-            fontSize: 20
-        }
-    },
-    blueSideListInfoItem: {
-        marginBottom: 40
-    },
-    blueSideListInfoIcon: {
-        fontSize: 32,
-        marginRight: 15
-    },
-    loginSide: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: '0 0 50%',
-        overflow: 'hidden'
-    },
-    loginSideTwitterIcon: {
-        fontSize: 45,
-    },
-    loginSideWrapper: {
-        width: '380px'
-    },
-    loginTitle: {
-        fontWeight: 700,
-        fontSize: 32,
-        marginBottom: 60,
-        marginTop: 20
-    },
-}))
-
+import {createStyles} from "./Home/theme";
 
 const  SignIn: React.FC = (): React.ReactElement => {
 
-    const classes = useStyles();
+    const classes = createStyles();
 
     const [openComeModal, setOpenComeModal] = useState<boolean>(false)
     const [openRegisterModal, setOpenRegisterModal] = useState<boolean>(false)

@@ -11,12 +11,12 @@ const ModalCome: React.FC<ModalComeType> = ({handleClose}) => {
 
     const useStyles = makeStyles((theme) => ({
         formCome: {
-            marginTop: '5%'
+            marginTop: '2%'
         },
         modalButton: {
             display: 'flex',
             justifyContent: 'flex-end',
-            marginTop: "25%",
+            marginTop: "8%",
 
         },
         textFieldBottom:{

@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStyles} from "../pages/Home";
+
 import {Avatar, Paper, Typography} from "@material-ui/core";
 import classNames from "classnames";
 import IconButton from "@material-ui/core/IconButton";
@@ -7,18 +7,19 @@ import ChatBubbleOutlineOutlinedIcon from "@material-ui/icons/ChatBubbleOutlineO
 import RepeatTwoToneIcon from "@material-ui/icons/RepeatTwoTone";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import ReplySharpIcon from "@material-ui/icons/ReplySharp";
+import {createStyles} from "../pages/Home/theme";
 
 interface TweetProps {
     classes: ReturnType<typeof createStyles>
+    text: string
     user: {
-        text: string
         fullname: string
         username: string
         avatarUrl: string
     }
 }
 
-const Tweet: React.FC<TweetProps> = ({classes, user}: TweetProps): React.ReactElement => {
+const Tweet: React.FC<TweetProps> = ({classes, user,text}: TweetProps): React.ReactElement => {
     return (
         <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant={"outlined"} elevation={3}>
 
@@ -35,7 +36,7 @@ const Tweet: React.FC<TweetProps> = ({classes, user}: TweetProps): React.ReactEl
 
                 </Typography>
                 <Typography>
-                    {user.text}
+                    {text}
                 </Typography>
                 <div className={classes.tweetFooter}>
                     <div>
